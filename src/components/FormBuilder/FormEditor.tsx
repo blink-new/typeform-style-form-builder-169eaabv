@@ -320,9 +320,9 @@ export const FormEditor: React.FC<FormEditorProps> = ({
                           <AccordionContent>
                             <div className="space-y-4 pt-2">
                               <Select
-                                value={question.conditionalLogic?.questionId || ""}
+                                value={question.conditionalLogic?.questionId || "none"}
                                 onValueChange={(value) => {
-                                  if (!value) {
+                                  if (value === "none") {
                                     updateQuestion(question.id, { conditionalLogic: undefined });
                                     return;
                                   }
@@ -340,7 +340,7 @@ export const FormEditor: React.FC<FormEditorProps> = ({
                                   <SelectValue placeholder="Select a question" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="">No condition</SelectItem>
+                                  <SelectItem value="none">No condition</SelectItem>
                                   {questions
                                     .filter(q => q.id !== question.id)
                                     .map(q => (
